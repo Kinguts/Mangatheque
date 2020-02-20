@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/book.css') }}">
+        <link rel="stylesheet" href="css/style.css">
+{% endblock %}
+
+{% block body %}
+<div class="blockArticle">
+    <article>
+        <div class="svg-wrapper">
+  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+    <rect class="shape" height="60" width="320" />
+    <div class="text"><h2>{{ article.title }}</h2></div>
+  </svg>
+</div>
+        
+        <div class="metadata" id="article_datetime">Ecrit le {{ article.create_at | date('d/m/Y') }} à {{ article.create_at | date('H:i') }} dans la catégorie {{ article.category.title }}   
+            <div class="content" id="content_manga">           
+                {{ article.content | raw }}
+            </div>    
+        </div>
+    </article>
+</div>
+{% for message in app.flashes('message') %}
+
+  <div class="alert alert-warning" role="alert">
+  {{ message }}
+  </div>
+
+{% endfor %}
+
+<div class="niveau">
+    <div class="bloc_etagere">
+    {% for manga in mangas %}
+    
+        <div class="book_collect"><img src="{{ vich_uploader_asset(manga, 'imageFile') }}" alt="" id="image_new">
+        <button type="button" class="btn btn-primary" id="button_manga1"><a href="{{ path('manga_delete', {'id':manga.id}) }}" class="button">Supprimer</a></button>
+        </div>
+      
+    {% endfor %}
+    </div>
+</div>
+
+
+
+<div id="button_collectAdd">
+<button type="submit" class="btn btn-success"><a class="nav-link" href="{{ path('create_manga', {'id':article.id}) }}">Ajouter un manga</a></button>
+</div>
+
+{% endblock %}     
+
+

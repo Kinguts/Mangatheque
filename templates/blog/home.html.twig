@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="slider">
+  <div id="imagesslider">
+    <figure><img class="photosslider" src="images/test_slider.jpg" alt="1"></figure>
+    <figure><img class="photosslider" src="images/shonen_slider.jpg" alt="2"></figure>
+    <figure><img class="photosslider" src="images/seinen_slider.jpg" alt="3"></figure>
+    <figure><img class="photosslider" src="images/seinen2_slider.jpg" alt="4"></figure>
+  </div>
+  <div id="boutonsslider">
+    <span class="boutons" id="boutongauche"><i class="fas fa-chevron-left"></i></span>
+    <span class="boutons" id="boutondroite"><i class="fas fa-chevron-right"></i></span>
+  </div>
+  <div id="statutslider">
+    <span class="cercles" id="cercle1"></span>
+    <span class="cercles"></span>
+    <i id="pause" class="fas fa-pause controles"></i>
+    <i id="play" class="fas fa-play controles invisible"></i>
+    <span class="cercles"></span>
+    <span class="cercles"></span>
+  </div>
+</div>
+
+<h1 class="title_home">Créer votre propre Mangathèque !</h1>
+
+<div></div>
+
+    
+<div class="row">
+
+  <div class="col-md-4 mr-auto">
+    <div class = "card text-white bg-primary mb-3 menu" style = "max-width: 20rem;">
+        <div class = "card-header"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;">Admin</font>     </font> 
+        </div>
+        <div class = "card-body">
+          <h4 class = "card-title"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;">Catégorie de manga</font></font> </h4>
+          <a class="btn btn-primary" href="{{ path('article_seinen') }}">Seinen</a></br>
+          <a class="btn btn-primary" href="{{ path('article_shonen') }}">Shonen</a></br>
+          <a class="btn btn-primary" href="{{ path('article_manhwa') }}">Manhwa</a></br>
+          <a class="btn btn-primary" href="{{ path('blog') }}">Ma Collection</a></br>
+          <p class = "card-text"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;"></font> </font> </p>
+        </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card text-white bg-primary mb-3 menu" style="max-width: 20rem;">
+    <div class="card-header">Espace membre</div>
+    <div class="card-body">
+      {% if app.user %}
+      <h4 class="card-title">{{ app.user.username }}</h4>
+      {% else %}
+      <h4 class="card-title">Membre</h4>
+      {% endif %}
+        <a class="btn btn-primary" href="{{ path('article_seinen') }}">Seinen</a></br>
+        <a class="btn btn-primary" href="{{ path('article_shonen') }}">Shonen</a></br>
+        <a class="btn btn-primary" href="{{ path('article_manhwa') }}">Manhwa</a></br>
+      <p class="card-text"></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

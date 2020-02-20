@@ -1,0 +1,427 @@
+body {
+	background-image: url("/images/dragon_ball_drake.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+/*----------SLIDER----------*/
+
+#slider {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;	
+}
+
+#imagesslider {
+	width: 400%;
+	position: relative;	
+}
+
+.photosslider {
+	width: 25%;
+	position: relative;
+	float: left;
+	animation: apparition 1.5s ease;
+	-webkit-animation : apparition 1.5s ease;
+	border: solid #E95420 3px;
+}
+
+#boutonsslider {
+	width: 100%;
+	height: 6vw;
+	position: absolute;
+	top: 33.5%;
+	margin: auto;
+	z-index: 2;
+	display: flex;
+	justify-content: space-between;
+}
+
+.fas {
+	font-size: 2vw;
+	color: white;
+	padding: 0.4vw;
+	padding-left: 0.8vw;
+	padding-right: 0.8vw;
+	border-radius: 50%;
+	background-color: black;
+	opacity: 0.9;
+	cursor: pointer;
+}
+
+.fas:hover {
+	color: black;
+	background-color: rgb(240, 240, 240);
+}
+
+.boutons {
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+#boutongauche {
+	margin-left: 0.5vw;
+}
+
+#boutondroite {
+	margin-right: 0.5vw;
+}
+
+#statutslider {
+	width: 12vw;
+	height: 2.8vw;
+	position: relative;
+	margin: auto;
+	display: flex;
+	justify-content: space-around;
+}
+
+.cercles {
+	display: inline-block;
+	margin: auto;
+	width: 7%;
+	height: 28%;
+	background-color: white;
+	border-radius: 50%;
+}
+
+#cercle1 {
+	background-color : #E95420;
+}
+
+.controles {
+	font-size: 1.3vw !important;
+	background-color: inherit !important;
+	color: white !important;
+	margin-top: 0.4vw;
+	cursor: pointer;
+}
+
+.controles:hover {
+	color: #E95420 !important;
+}
+
+.visible {
+	display: block;
+}
+
+.invisible {
+	animation: disparition 1s ease;
+	-webkit-animation : disparition 1s ease;
+	display: none !important;
+}
+
+.button_new {
+	text-align: center;
+}
+
+#new {
+	margin-top: 5px;
+}
+
+@keyframes apparition {
+	0%
+	{
+		opacity: 0;
+	}
+	100%
+	{
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes apparition {
+	0%
+	{
+		opacity: 0;
+	}
+	100%
+	{
+		opacity: 1;
+	}
+}
+
+@keyframes disparition {
+	0%
+	{
+		opacity: 1;
+	}
+	100%
+	{
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes disparition {
+	0%
+	{
+		opacity: 1;
+	}
+	100%
+	{
+		opacity: 0;
+	}
+}
+
+.menu {
+	height: 100%;
+}
+
+footer {
+	margin-top: 50px;
+	width: 100%;
+	bottom: 0;
+}
+
+.title_home {
+	margin-bottom: 80px;
+	color: white;
+	margin-top: 30px;
+	border: solid #E95420 3px;
+	border-radius: 50px;
+	background-color: #E95420;
+	font-weight: bold;
+	width: 65%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#title_collect {
+	text-align: center;
+	border: solid #E95420 3px;
+	border-radius: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-weight: bold;
+	color: white;
+	background-color: #E95420;
+	width: 50%;
+	padding: 7px;
+
+}
+
+#title_registration {
+	color: #E95420;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	border: solid #E95420 3px;
+	border-radius: 50px;
+	background-color: burlywood;
+	width: 50%;
+	padding-top: 5px;
+	font-weight: bold;
+}
+
+#registration {
+	border: solid #E95420 3px;
+	border-radius: 50px;
+	background-color: burlywood;
+	padding: 25px;
+	color: white;
+}
+
+.cat_seinen, #cat_shonen, #cat_manhwa {
+	border: solid #E95420 3px;
+	border-radius: 50px;
+	background-color: burlywood;
+	padding: 25px;
+}
+
+#title_seinen, #title_shonen, #title_manhwa, #title_connect, #titleCollect {
+	border: solid #E95420 3px;
+	border-radius: 50px;
+	background-color: burlywood;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: #E95420;
+}
+
+.second_title {
+	text-align: center;
+}
+
+#form_connect {
+	border: solid #E95420 3px;
+	border-radius: 50px;
+	background-color: burlywood;
+	width: 100%;
+	padding: 15px;
+	padding-top: 20px;
+}
+
+#button_connect, #button_registration {
+	text-align: center;
+	margin-top: 0;
+	padding-top: 0;
+}
+
+#button_manga1 {
+	margin-bottom: 3px;
+	margin-top: 0;
+	color: white;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#bloc_connect, #bloc_registration {
+	text-align: center;
+	margin-bottom: 0;
+}
+
+#article_datetime {
+	margin-bottom: 10px;
+}
+
+.metadata {
+	text-align: justify;
+}
+
+/*----Test étagère avec livres ----*/
+
+.book_collect {
+	border: solid black 1px;
+	width: 17%;
+	height: 260px;
+	background-size:100% auto;
+	max-width: 100%;
+	max-height: 100%;
+	margin-right: 23px;
+	display: flex;
+	position: relative;
+	flex-wrap: wrap;
+	margin-top: 40px;
+	
+}
+
+.bloc_etagere {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 0;
+}
+
+.bloc_etagere div img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.bloc_etagere div:hover img {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+
+.niveau {
+	margin-bottom: 20px;
+}
+
+/*----Show Article ----*/
+
+.blockArticle {
+	border: solid #E95420 3px;
+	border-radius: 50px;
+	background-color: burlywood;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+.svg-wrapper {
+	text-align: center; 
+	margin-top: auto;
+}
+.shape {
+	stroke-dasharray: 140 540;
+	stroke-dashoffset: -474;
+	stroke-width: 8px;
+	fill: transparent;
+	stroke: #E95420;
+	border-bottom: 5px solid black;
+	transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
+}
+.text {
+	font-family: 'Roboto Condensed';
+	font-size: 22px;
+	line-height: 32px;
+	letter-spacing: 8px;
+	color: black;
+	top: -48px;
+	position: relative;
+}
+.svg-wrapper:hover .shape {
+	stroke-width: 2px;
+	stroke-dashoffset: 0;
+	stroke-dasharray: 760;
+}
+
+#content_manga {
+	text-align: justify;
+	color: black;
+}
+
+.metadata {
+	color: white;
+}
+
+/*----Create Article ----*/
+
+#selectCollection {
+	width: 25%;
+}
+
+#blocCreate {
+	border: solid #E95420 3px;
+	border-radius: 50px;
+	background-color: burlywood;
+	padding: 20px;
+	margin-top: 20px;
+	color: white;
+}
+
+#blocCreate h2 {
+	text-align: center;
+	color: #E95420;
+	border: solid #E95420 2px;
+	background-color: white;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#blocCreate select {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+}
+
+#blocCreate button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+
+#blocCreate hr {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#imageArticle {
+	width: 35%;
+	margin-left: auto;
+	margin-right: auto;
+}

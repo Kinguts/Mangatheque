@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formManga 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+
+
+<h1>Ajout d'un manga !<h1>
+
+    {{ form_start(formManga) }}
+
+    {{ form_row(formManga.title, {'attr': {'placeholder': "Titre de l'article"}}) }}
+    {{ form_widget(formManga.imageFile) }}
+  
+    <button type="submit" class="btn btn-success"> 
+            Ajouter le manga           
+    </button>
+
+    {{ form_end(formManga) }}
+
+{% endblock %} 
