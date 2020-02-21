@@ -68,7 +68,7 @@
             </figure></li>
             </ul>				                
 			<button type="button" class="btn btn-primary" id="button_manga1"><a href="{{ path('article_delete', {'id':article.id}) }}" class="button">Supprimer</a></button>
-			<button type="button" class="btn btn-primary" id="button_manga2"><a href="{{ path('blog_edit', {'id':article.id}) }}" class="button">Editer</a></button>			
+			<button type="button" class="btn btn-primary" id="button_manga2"><a href="{{ path('collection_edit', {'id':article.id}) }}" class="button">Editer</a></button>			
     	  </div>   	  
         </div>	
       </div>
@@ -76,6 +76,10 @@
   {% endfor %}
 </div>
     
-<div class="button_new"><button type="submit" class="btn btn-success" id="new"><a class="nav-link" href="{{ path('blog_create') }}">Ajouter une collection</a></button></div>
+<div class="button_new"><button type="submit" class="btn btn-success" id="new"><a class="nav-link" href="{{ path('collection_create') }}">Ajouter une collection</a></button></div>
+
+<div class="navigation">
+  {{ knp_pagination_render(article) }}
+</div>
 
 {% endblock %}

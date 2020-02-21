@@ -24,21 +24,26 @@
 
 <h1 class="title_home">Créer votre propre Mangathèque !</h1>
 
-<div></div>
+<div id="text_home">
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, blanditiis. Quasi, ipsam esse delectus odit modi repellendus corporis debitis nam iusto dolorum dicta in, sit vero necessitatibus aspernatur similique </br>
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut explicabo dolores id modi aliquid quibusdam reiciendis tenetur ratione veniam excepturi, hic architecto omnis, voluptatem fugiat corporis in obcaecati quas ad.
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio accusamus, itaque placeat asperiores sunt beatae deserunt doloribus est veritatis pariatur sint eligendi nostrum nihil libero rerum dolorum porro earum laudantium?<br></p>
+</div>
 
     
 <div class="row">
 
   <div class="col-md-4 mr-auto">
     <div class = "card text-white bg-primary mb-3 menu" style = "max-width: 20rem;">
-        <div class = "card-header"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;">Admin</font>     </font> 
+        <div class = "card-header"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;">Visite du site</font>     </font> 
         </div>
         <div class = "card-body">
           <h4 class = "card-title"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;">Catégorie de manga</font></font> </h4>
           <a class="btn btn-primary" href="{{ path('article_seinen') }}">Seinen</a></br>
           <a class="btn btn-primary" href="{{ path('article_shonen') }}">Shonen</a></br>
           <a class="btn btn-primary" href="{{ path('article_manhwa') }}">Manhwa</a></br>
-          <a class="btn btn-primary" href="{{ path('blog') }}">Ma Collection</a></br>
+          <hr>
+          <a class="btn btn-primary" href="">Les collections</a></br>
           <p class = "card-text"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;"></font> </font> </p>
         </div>
     </div>
@@ -53,9 +58,9 @@
       {% else %}
       <h4 class="card-title">Membre</h4>
       {% endif %}
-        <a class="btn btn-primary" href="{{ path('article_seinen') }}">Seinen</a></br>
-        <a class="btn btn-primary" href="{{ path('article_shonen') }}">Shonen</a></br>
-        <a class="btn btn-primary" href="{{ path('article_manhwa') }}">Manhwa</a></br>
+        <a class="btn btn-primary" href="{{ path('collection') }}">Mes collections</a></br>
+        <a class="btn btn-primary" href="{{ path('collection_create') }}">Ajouter une collection</a></br>
+        <a class="btn btn-primary" href="/lego">Administration</a></br>
       <p class="card-text"></p>
       </div>
     </div>

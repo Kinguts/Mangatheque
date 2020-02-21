@@ -23,22 +23,29 @@ use App\Form\MangaType;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Entity\Manga;
-
-
 use Knp\Component\Pager\PaginatorInterface;
 
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/blog", name="blog")
+     * @Route("/collection", name="collection")
      */
-    public function index(EntityManagerInterface $entityManager, Request $request, TokenStorageInterface $tokenStorage)
+    public function index(EntityManagerInterface $entityManager, Request $request, TokenStorageInterface $tokenStorage, PaginatorInterface $paginator)
     {
 
         $id = $tokenStorage->getToken()->getUser();
-        $article = $entityManager->getRepository(Article::class)->findBy(['user' => $id]);
+        $allArticles = $entityManager->getRepository(Article::class)->findBy(['user' => $id]);
 
-        return $this->render('blog/index.html.twig', [
+        $article = $paginator->paginate(
+            // Doctrine Query, not results
+            $allArticles,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            8
+        );
+
+        return $this->render('blog/collection.html.twig', [
             'article' => $article
         ]);
     }
@@ -52,8 +59,8 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/blog/new", name="blog_create")
-     * @Route("/blog/{id}/edit", name="blog_edit")
+     * @Route("/collection/new", name="collection_create")
+     * @Route("/collection/{id}/edit", name="collection_edit")
      */
     public function form(Article $article = null, Request $request, ObjectManager $manager) 
     {

@@ -1,6 +1,6 @@
 easy_admin:
     # On définit le nom de l'interface d'administration
-    site_name: 'Gestion de ma Mangathèque'
+    site_name: 'Gestion de Mangathèque'
     # On définit l'affichage de l'utilisateur
     user:
         display_name: true
@@ -15,6 +15,7 @@ easy_admin:
             - { label: 'Article' }
             - { entity: 'Article', label: 'Article', icon: 'book' }
             - { entity: 'Category', label: 'Catégories', icon: 'tag' }
+            - { entity: 'Manga', label: 'Manga', icon: 'book-open' }
             - { label: 'Utilisateurs' }
             - { entity: 'User', label: 'Utilisateurs', icon: 'user' }
     formats:
@@ -33,7 +34,7 @@ easy_admin:
                     - { property: 'featured_image', label: 'Image', type: 'image', base_path: '%app.path.featured_images%' }
                     - { property: 'create_at', label: 'Créer' }
                     # Les catégories et les mots-clé sont listés ci-dessous
-                    - { property: 'category', label: 'Catégories', type: 'array'}
+                    - { property: 'category', label: 'Catégories', type: 'string'}
 
                 sort: ['create_at', 'desc']
             # On définit ci-dessous le contenu du formulaire d'ajout ou modification d'article
@@ -70,6 +71,19 @@ easy_admin:
                 fields:
                     - email
                     - { property: 'roles', label: 'Rôles', type: choice, type_options: {expanded: true, multiple: true, choices: {'Utilisateur':'ROLE_USER', 'Administrateur':'ROLE_ADMIN'}}}            
+        Manga:
+            class: App\Entity\Manga
+            label: 'Manga'
+            list:
+                fields:
+                    - id
+                    - title
+                    - { property: 'featured_image', label: 'Image', type: 'image', base_path: '%app.path.featured_images%' }
+            form:
+                fields:
+                    - title
+                    - { property: 'imageFile', type: 'vich_image', label: 'Image' }
+                    - user
 
 
 

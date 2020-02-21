@@ -168,6 +168,16 @@ body {
 	}
 }
 
+#text_home {
+	border: solid #E95420 3px;
+	background-color: burlywood;
+	height: 200px;
+	width: 97%;
+	margin-bottom: 60px;
+	padding: 8px;
+	text-align: justify;
+}
+
 .menu {
 	height: 100%;
 }
