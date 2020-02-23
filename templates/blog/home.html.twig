@@ -31,10 +31,10 @@
 </div>
 
     
-<div class="row">
+<div class="row" id="containerMenu">
 
-  <div class="col-md-4 mr-auto">
-    <div class = "card text-white bg-primary mb-3 menu" style = "max-width: 20rem;">
+  <div class="col-md-4 mr-auto" id="blocghost">
+    <div class = "card text-white bg-primary mb-3 menu" id="blocmenu1" style = "max-width: 20rem;">
         <div class = "card-header"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;">Visite du site</font>     </font> 
         </div>
         <div class = "card-body">
@@ -43,24 +43,29 @@
           <a class="btn btn-primary" href="{{ path('article_shonen') }}">Shonen</a></br>
           <a class="btn btn-primary" href="{{ path('article_manhwa') }}">Manhwa</a></br>
           <hr>
-          <a class="btn btn-primary" href="">Les collections</a></br>
+          <a class="btn btn-primary" href="{{ path('all_collections') }}">Les collections</a></br>
           <p class = "card-text"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;"></font> </font> </p>
         </div>
     </div>
   </div>
   
   <div class="col-md-4">
-    <div class="card text-white bg-primary mb-3 menu" style="max-width: 20rem;">
+    <div class="card text-white bg-primary mb-3 menu" id="blocmenu2" style="max-width: 20rem;">
     <div class="card-header">Espace membre</div>
     <div class="card-body">
       {% if app.user %}
-      <h4 class="card-title">{{ app.user.username }}</h4>
+      <h4 class="card-title">Bonjour {{ app.user.username }}</h4>
       {% else %}
       <h4 class="card-title">Membre</h4>
       {% endif %}
         <a class="btn btn-primary" href="{{ path('collection') }}">Mes collections</a></br>
         <a class="btn btn-primary" href="{{ path('collection_create') }}">Ajouter une collection</a></br>
+        {% if is_granted('ROLE_ADMIN') %}
         <a class="btn btn-primary" href="/lego">Administration</a></br>
+        {% else %}
+        <a class="btn btn-primary" href="{{ path('security_registration') }}">Inscription</a>
+        {% endif %}
+
       <p class="card-text"></p>
       </div>
     </div>

@@ -33,9 +33,15 @@
                             </a>
                         </li>
                     {% endif %}
+                    {% if not app.user %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('security_registration') }}">Inscription</a>
                     </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('collection') }}">Mes collections</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>

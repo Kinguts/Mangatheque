@@ -171,8 +171,8 @@ body {
 #text_home {
 	border: solid #E95420 3px;
 	background-color: burlywood;
-	height: 200px;
-	width: 97%;
+	height: 100%;
+	width: 100%;
 	margin-bottom: 60px;
 	padding: 8px;
 	text-align: justify;
@@ -434,4 +434,62 @@ footer {
 	width: 35%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+/*----Responsive ----*/
+
+@media screen and (max-width: 91px) {
+	#imageArticle {
+		width: 55%;
+	}
+}
+
+@media screen and (max-width: 865px) {
+	#blocmenu1, #blocmenu2 {
+		width: 266px;
+	}
+
+	#blocghost {
+		margin-right: 180px !important;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.bloc_book {
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	#title_collect {
+		width: 88%
+	}
+
+	#containerMenu {
+		align-items: center;
+	}
+
+	#blocmenu1, #blocmenu2 {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#blocghost {
+		margin-right: 0 !important;
+	}
+
+	.title_home {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 606px) {
+	.book {
+		margin-top: 20px !important;
+		margin-right: 0;
+		margin-left: 141px !important;
+	}
+
+	#imageArticle {
+		width: 100%;
+	}
 }

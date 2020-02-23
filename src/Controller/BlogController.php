@@ -204,6 +204,14 @@ class BlogController extends AbstractController
         return $this->render('blog/manhwa.html.twig');
     }
 
+    /**
+     * @Route("/allCollections", name="all_collections")
+     */
+    public function allCollections()
+    {
+        return $this->render('blog/allCollections.html.twig');
+    }
+
     
     
 }

@@ -24,7 +24,7 @@ class ApiController extends AbstractController
     public function liste(articleRepository $articleRepo)
     {
         //On récupère la liste des articles
-        $article = $articleRepo->apiFindAll();
+        $article = $articleRepo->apiFindAll();      
 
         //On spécifie qu'on utilise un encodeur en json
         $encoders = [new JsonEncoder()];
