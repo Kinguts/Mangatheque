@@ -58,12 +58,12 @@
       {% else %}
       <h4 class="card-title">Membre</h4>
       {% endif %}
-        <a class="btn btn-primary" href="{{ path('collection') }}">Mes collections</a></br>
+        <a class="btn btn-primary" href="{{ path('collections') }}">Mes collections</a></br>
         <a class="btn btn-primary" href="{{ path('collection_create') }}">Ajouter une collection</a></br>
         {% if is_granted('ROLE_ADMIN') %}
         <a class="btn btn-primary" href="/lego">Administration</a></br>
         {% else %}
-        <a class="btn btn-primary" href="{{ path('security_registration') }}">Inscription</a>
+        <a class="btn btn-primary" href="{{ path('security_logout') }}">Deconnexion</a>
         {% endif %}
 
       <p class="card-text"></p>

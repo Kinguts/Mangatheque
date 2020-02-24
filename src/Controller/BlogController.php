@@ -28,7 +28,7 @@ use Knp\Component\Pager\PaginatorInterface;
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/collection", name="collection")
+     * @Route("/collections", name="collections")
      */
     public function index(EntityManagerInterface $entityManager, Request $request, TokenStorageInterface $tokenStorage, PaginatorInterface $paginator)
     {
@@ -45,7 +45,7 @@ class BlogController extends AbstractController
             8
         );
 
-        return $this->render('blog/collection.html.twig', [
+        return $this->render('blog/collections.html.twig', [
             'article' => $article
         ]);
     }
@@ -135,7 +135,7 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/blog/{id}", name="blog_show")
+     * @Route("/collection/{id}", name="collection_show")
      */
     public function show($id, Article $article, EntityManagerInterface $entityManager, Request $request, TokenStorageInterface $tokenStorage)
     {
