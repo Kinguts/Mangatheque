@@ -56,19 +56,19 @@ class User implements UserInterface
     public $confirm_password;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="user")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $articles;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Manga", mappedBy="user")
      */
     private $manga;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Serie", mappedBy="users")
+     * @ORM\JoinTable(name="serie_user")
+     */
+    private $series;
+
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->series = new ArrayCollection();
         $this->manga = new ArrayCollection();
     }
 
@@ -145,37 +145,6 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Article[]
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
-
-    public function addArticle(Article $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): self
-    {
-        if ($this->articles->contains($article)) {
-            $this->articles->removeElement($article);
-            // set the owning side to null (unless already changed)
-            if ($article->getUser() === $this) {
-                $article->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Manga[]
      */
     public function getManga(): Collection
@@ -201,6 +170,34 @@ class User implements UserInterface
             if ($manga->getUser() === $this) {
                 $manga->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Serie[]
+     */
+    public function getSeries(): Collection
+    {
+        return $this->series;
+    }
+
+    public function addSeries(Serie $series): self
+    {
+        if (!$this->series->contains($series)) {
+            $this->series[] = $series;
+            $series->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeries(Serie $series): self
+    {
+        if ($this->series->contains($series)) {
+            $this->series->removeElement($series);
+            $series->removeUser($this);
         }
 
         return $this;

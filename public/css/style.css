@@ -1,3 +1,8 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
 	background-image: url("/images/dragon_ball_drake.jpg");
 	background-repeat: no-repeat;
@@ -122,6 +127,7 @@ body {
 
 #new {
 	margin-top: 5px;
+	margin-bottom: 70px;
 }
 
 @keyframes apparition {
@@ -182,11 +188,7 @@ body {
 	height: 100%;
 }
 
-footer {
-	margin-top: 50px;
-	width: 100%;
-	bottom: 0;
-}
+
 
 .title_home {
 	margin-bottom: 80px;
@@ -233,6 +235,10 @@ footer {
 	font-weight: bold;
 }
 
+#containerMenu {
+	margin-bottom: 80px;
+}
+
 #registration {
 	border: solid #E95420 3px;
 	border-radius: 50px;
@@ -246,6 +252,16 @@ footer {
 	border-radius: 50px;
 	background-color: burlywood;
 	padding: 25px;
+}
+
+.footer {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+	background: #E95420;
+	color: #E95420;
+	margin-top: 50px;
+	bottom: 0;
 }
 
 #title_seinen, #title_shonen, #title_manhwa, #title_connect, #titleCollect {
@@ -277,15 +293,6 @@ footer {
 	text-align: center;
 	margin-top: 0;
 	padding-top: 0;
-}
-
-#button_manga1 {
-	margin-bottom: 3px;
-	margin-top: 0;
-	color: white;
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 #bloc_connect, #bloc_registration {
@@ -324,22 +331,36 @@ footer {
 	margin-bottom: 0;
 }
 
-.bloc_etagere div img {
-	-webkit-transform: scale(1);
-	transform: scale(1);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-}
-
-.bloc_etagere div:hover img {
-	-webkit-transform: scale(1.3);
-	transform: scale(1.3);
-}
-
 .niveau {
 	margin-bottom: 20px;
 }
 
+#button_collectAdd {
+	margin-bottom: 70px;
+	margin-top: 50px;
+	text-align: center;
+}
+
+#button_mangaShow {
+	margin-bottom: 3px;
+	margin-top: 2px;
+	color: white;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.navigation {
+	margin-bottom: 60px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.pagination {
+	display: block ruby;
+	margin-left: 37%;
+	margin-right: 63%;
+}
 /*----Show Article ----*/
 
 .blockArticle {
@@ -385,6 +406,17 @@ footer {
 
 .metadata {
 	color: white;
+}
+
+.collection_showAll {
+	display: flex;
+	margin-top: 30px;
+}
+
+.image_collection {
+	margin-right: 20px;
+	border: solid black 3px;
+	margin-top: 20px;
 }
 
 /*----Create Article ----*/

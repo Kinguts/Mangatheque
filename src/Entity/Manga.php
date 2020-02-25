@@ -65,10 +65,10 @@ class Manga
     private $updateAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="mangas")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Serie", inversedBy="mangas")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $article;
+    private $serie;
 
     public function getId(): ?int
     {
@@ -152,14 +152,14 @@ class Manga
         return $this;
     }
 
-    public function getArticle(): ?Article
+    public function getSerie(): ?Serie
     {
-        return $this->article;
+        return $this->serie;
     }
 
-    public function setArticle(?Article $article): self
+    public function setSerie(?Serie $serie): self
     {
-        $this->article = $article;
+        $this->serie = $serie;
 
         return $this;
     }

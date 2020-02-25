@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Article;
+use App\Entity\Serie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Article|null find($id, $lockMode = null, $lockVersion = null)
- * @method Article|null findOneBy(array $criteria, array $orderBy = null)
- * @method Article[]    findAll()
- * @method Article[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Serie|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Serie|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Serie[]    findAll()
+ * @method Serie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ArticleRepository extends ServiceEntityRepository
+class SerieRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Article::class);
+        parent::__construct($registry, Serie::class);
     }
 
     /**
-     * Retourne une liste d'article pour l'API
+     * Retourne une liste de series pour l'API
      * 
      * @return array
      */
@@ -28,14 +28,14 @@ class ArticleRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('a')
             ->select('a.id', 'a.title', 'a.content', 'a.featured_image', 'a.create_at')
-            ->orderBy('a.create_at', 'DESC');
+            ->orderBy('a.title', 'ASC');
 
         $query = $qb->getQuery();
         return $query->execute();
     }
 
     // /**
-    //  * @return Article[] Returns an array of Article objects
+    //  * @return Serie[] Returns an array of Serie objects
     //  */
     /*
     public function findByExampleField($value)
@@ -52,7 +52,7 @@ class ArticleRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Article
+    public function findOneBySomeField($value): ?Serie
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')

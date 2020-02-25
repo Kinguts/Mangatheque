@@ -11,10 +11,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\SerieRepository")
  * @Vich\Uploadable
  */
-class Article
+class Serie
 {
     /**
      * @ORM\Id()
@@ -64,31 +64,32 @@ class Article
     private $imageFile;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="series")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="article", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="serie", orphanRemoval=true)
      */
     private $comments;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="articles")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Manga", mappedBy="article", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Manga", mappedBy="serie", orphanRemoval=true)
      */
     private $mangas;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="series")
+     */
+    private $users;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->mangas = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function __toString()
@@ -201,7 +202,7 @@ class Article
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
-            $comment->setArticle($this);
+            $comment->setSerie($this);
         }
 
         return $this;
@@ -212,22 +213,10 @@ class Article
         if ($this->comments->contains($comment)) {
             $this->comments->removeElement($comment);
             // set the owning side to null (unless already changed)
-            if ($comment->getArticle() === $this) {
-                $comment->setArticle(null);
+            if ($comment->getSerie() === $this) {
+                $comment->setSerie(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }
@@ -244,7 +233,7 @@ class Article
     {
         if (!$this->mangas->contains($manga)) {
             $this->mangas[] = $manga;
-            $manga->setArticle($this);
+            $manga->setSerie($this);
         }
 
         return $this;
@@ -255,9 +244,35 @@ class Article
         if ($this->mangas->contains($manga)) {
             $this->mangas->removeElement($manga);
             // set the owning side to null (unless already changed)
-            if ($manga->getArticle() === $this) {
-                $manga->setArticle(null);
+            if ($manga->getSerie() === $this) {
+                $manga->setSerie(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
         }
 
         return $this;

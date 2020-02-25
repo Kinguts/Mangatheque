@@ -1,22 +1,22 @@
 // On utilise un call ajax pour l'api 
 
-function getCollections() {
+function getSeries() {
     $.ajax({
-        url:'/api/article/liste',
+        url:'/api/serie/liste',
         type: 'GET',
         dataType: 'json',
         success: function(response) {
             for(let i = 0; i < response.length; i++) {
-                var collection = createCollection(response[i]);
-                $('#allCollections').append(collection)                
+                var serie = createSerie(response[i]);
+                $('#allCollections').append(serie)                
             }
         }
     })
 }
 
-// Fonction qui permet de créer le DOM d'une collection
+// Fonction qui permet de créer le DOM d'une serie
 
-function createCollection(data) {
+function createSerie(data) {
     var content = '<li>';
     content += '<div class="col-4 bloc_book" id="blocBook" style="margin: 5px;" >';
     content += '<div class="row mb-2 bloc_interieur">';          
@@ -34,7 +34,7 @@ function createCollection(data) {
     content += '<ul class="page_book">';
     content += '<li></li>';
     content += '<li>';								    
-    content += '<a href="/collection/'+data.id+'" class="btn btn-primary mangaCollect" style="margin-top: 60%;">Ma collection</a>';
+    content += '<a href="/serie/'+data.id+'" class="btn btn-primary mangaCollect" style="margin-top: 60%;">La collection</a>';
     content += '</li>';
     content += '<li></li>';
     content += '<li></li>';
@@ -65,9 +65,19 @@ function createCollection(data) {
 
 $( document ).ready(function() {
     $("#selectCollection").on("change", function(){
-        var value = this.value; 
-        console.log(value);
+        var value = this.value;       
+        if (value !== "") {
+            $('#selectionSubmit').attr('href', '/serie/' + value + '/update').removeClass("btn-error")
+        } else {
+            $("#selectionSubmit").addClass("btn-error");
+        }
     })
-    getCollections();
+    $("#selectionSubmit").on("click", function(e){
+        if ($(this).hasClass("btn-error")) {
+            e.preventDefault()
+            return false
+        } 
+    })
+    getSeries();
 });
 

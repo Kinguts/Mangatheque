@@ -32,10 +32,10 @@ class Comment
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Serie", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $article;
+    private $serie;
 
     public function getId(): ?int
     {
@@ -78,14 +78,14 @@ class Comment
         return $this;
     }
 
-    public function getArticle(): ?Article
+    public function getSerie(): ?Serie
     {
-        return $this->article;
+        return $this->serie;
     }
 
-    public function setArticle(?Article $article): self
+    public function setSerie(?Serie $serie): self
     {
-        $this->article = $article;
+        $this->serie = $serie;
 
         return $this;
     }

@@ -24,13 +24,13 @@ class Category
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Serie", mappedBy="category")
      */
-    private $articles;
+    private $series;
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->series = new ArrayCollection();
     }
 
     public function __toString()
@@ -57,30 +57,30 @@ class Category
     }
 
     /**
-     * @return Collection|Article[]
+     * @return Collection|Serie[]
      */
-    public function getArticles(): Collection
+    public function getSeries(): Collection
     {
-        return $this->articles;
+        return $this->series;
     }
 
-    public function addArticle(Article $article): self
+    public function addSerie(Serie $serie): self
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setCategory($this);
+        if (!$this->series->contains($serie)) {
+            $this->series[] = $serie;
+            $serie->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeArticle(Article $article): self
+    public function removeSerie(Serie $serie): self
     {
-        if ($this->articles->contains($article)) {
-            $this->articles->removeElement($article);
+        if ($this->series->contains($serie)) {
+            $this->series->removeElement($serie);
             // set the owning side to null (unless already changed)
-            if ($article->getCategory() === $this) {
-                $article->setCategory(null);
+            if ($serie->getCategory() === $this) {
+                $serie->setCategory(null);
             }
         }
 

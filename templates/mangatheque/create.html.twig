@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formSerie 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+{% for message in app.flashes('message') %}
+
+  <div class="alert alert-warning" role="alert">
+  {{ message }}
+  </div>
+
+{% endfor %}
+
+ 
+<div id="blocCreate">
+    <h2>Selectionner une collection existante</h2>
+
+    <select class="form-control" data-live-search="true" id="selectCollection" >
+    <option value="">Veuillez selectionner une collection existante</option>
+    {% for serie in series %}
+    <option value="{{ serie.id }}">{{ serie.title }}</option>
+
+    {% endfor %}
+    </select>
+
+    <a href="#" id="selectionSubmit" class="btn btn-success btn-error">Ajouter la serie</a>
+
+    <hr>
+    <h2>Ou ajouter une nouvelle collection</h2>
+
+    {{ form_start(formSerie) }}
+
+    {{ form_row(formSerie.title, {'attr': {'placeholder': "Titre de la collection"}}) }}
+    {{ form_row(formSerie.category) }}
+    {{ form_row(formSerie.content, {'attr': {'placeholder': "Histoire de la collection"}}) }}
+    <div id="imageArticle">
+    {{ form_widget(formSerie.imageFile, {'attr': {'placeholder': "Image de la collection"}}) }}
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        {% if editMode %}
+            Enregistrer
+        {% else %}
+            Ajouter la collection
+        {% endif %}    
+    </button>
+</div>
+    {{ form_end(formSerie) }}
+
+{% endblock %}    

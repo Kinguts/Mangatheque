@@ -10,8 +10,8 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-use App\Entity\Article;
-use App\Repository\ArticleRepository;
+use App\Entity\Serie;
+use App\Repository\SerieRepository;
 
 /**
  * @Route("/api", name="api_")
@@ -19,17 +19,17 @@ use App\Repository\ArticleRepository;
 class ApiController extends AbstractController
 {
     /**
-     * @Route("/article/liste", name="liste", methods={"GET"})
+     * @Route("/serie/liste", name="liste", methods={"GET"})
      */
-    public function liste(articleRepository $articleRepo)
+    public function liste(serieRepository $serieRepo)
     {
-        //On récupère la liste des articles
-        $article = $articleRepo->apiFindAll();      
+        //On récupère la liste des series
+        $serie = $serieRepo->apiFindAll();      
 
         //On spécifie qu'on utilise un encodeur en json
         $encoders = [new JsonEncoder()];
 
-        //On instancie le "normaliseur" pour convertir la collection en tableau
+        //On instancie le "normaliseur" pour convertir la serie en tableau
         $normalizers = [new ObjectNormalizer()];
 
         //On fait la conversion en json
@@ -37,7 +37,7 @@ class ApiController extends AbstractController
         $serializer = new Serializer($normalizers, $encoders);
 
         //On convertit
-        $jsonContent = $serializer->serialize($article, 'json', [
+        $jsonContent = $serializer->serialize($serie, 'json', [
             'circular_reference_handler' => function($object){
                 return $object->getId();
             }
@@ -55,14 +55,14 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/article/find/{id}", name="find", methods={"GET"})
+     * @Route("/serie/find/{id}", name="find", methods={"GET"})
      */
-    public function getArticle(Article $article)
+    public function getCSerie(Serie $serie)
     {    
         //On spécifie qu'on utilise un encodeur en json
         $encoders = [new JsonEncoder()];
 
-        //On instancie le "normaliseur" pour convertir la collection en tableau
+        //On instancie le "normaliseur" pour convertir la serie en tableau
         $normalizers = [new ObjectNormalizer()];
 
         //On fait la conversion en json
@@ -70,7 +70,7 @@ class ApiController extends AbstractController
         $serializer = new Serializer($normalizers, $encoders);
 
         //On convertit
-        $jsonContent = $serializer->serialize($article, 'json', [
+        $jsonContent = $serializer->serialize($serie, 'json', [
             'circular_reference_handler' => function($object){
                 return $object->getId();
             }
@@ -88,30 +88,30 @@ class ApiController extends AbstractController
     }
 
     /**
-     * Ajout d'un article
+     * Ajout d'une serie
      * 
-     * @Route("/article/add", name="add", methods={"POST"})
+     * @Route("/serie/add", name="add", methods={"POST"})
      */
-    public function addArticle(Request $request)
+    public function addSerie(Request $request)
     {
         //On vérifie si on à une requete XMLHttRequest
         if($request->isXMLHttpRequest()){
             //On vérifie les données après les avoir décodées
             $donnees = json_decode($request->getContent());
 
-            //On instancie un nouvel article
-            $article = new Article();
+            //On instancie une nouvelle serie
+            $serie = new Serie();
 
-            //On hydrate l'article
-            $article->setTitle($donnees->title);
-            $article->setContent($donnees->content);
-            $article->setFeaturedImage($donnees->image);
+            //On hydrate la serie
+            $serie->setTitle($donnees->title);
+            $serie->setContent($donnees->content);
+            $serie->setFeaturedImage($donnees->image);
             $user = $this->getDoctrine()->getRepository(User::class)->find(2);
-            $article->setUser($user);
+            $serie->setUser($user);
 
             //On sauvegarde en base de données
             $em = $this->getDoctrine()->getManager();
-            $em->persist($article);
+            $em->persist($serie);
             $em->flush();
 
             //On retourne la confirmation

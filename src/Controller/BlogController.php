@@ -14,11 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-
-use App\Entity\Article;
-use App\Repository\ArticleRepository;
+use App\Entity\User;
+use App\Entity\Serie;
+use App\Repository\SerieRepository;
 use App\Repository\MangaRepository;
-use App\Form\ArticleType;
+use App\Form\SerieType;
 use App\Form\MangaType;
 use App\Entity\Comment;
 use App\Form\CommentType;
@@ -28,25 +28,34 @@ use Knp\Component\Pager\PaginatorInterface;
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/collections", name="collections")
+     * @Route("/series", name="series")
      */
     public function index(EntityManagerInterface $entityManager, Request $request, TokenStorageInterface $tokenStorage, PaginatorInterface $paginator)
     {
 
-        $id = $tokenStorage->getToken()->getUser();
-        $allArticles = $entityManager->getRepository(Article::class)->findBy(['user' => $id]);
+        $currentUserId = $tokenStorage->getToken()->getUser();
 
-        $article = $paginator->paginate(
+        $user = $entityManager->getRepository(User::class)->find($currentUserId);
+
+        if (isset($user)) {
+
+            $allSeries = $user->getSeries();
+            
+        } else {
+            $allSeries = array();           
+        } 
+
+        $serie = $paginator->paginate(
             // Doctrine Query, not results
-            $allArticles,
+            $allSeries,
             // Define the page parameter
             $request->query->getInt('page', 1),
             // Items per page
-            8
+            6
         );
 
-        return $this->render('blog/collections.html.twig', [
-            'article' => $article
+        return $this->render('mangatheque/series.html.twig', [
+            'serie' => $serie
         ]);
     }
 
@@ -55,43 +64,43 @@ class BlogController extends AbstractController
      */
     public function home()
     {
-        return $this->render('blog/home.html.twig');
+        return $this->render('mangatheque/home.html.twig');
     }
 
     /**
-     * @Route("/collection/new", name="collection_create")
-     * @Route("/collection/{id}/edit", name="collection_edit")
+     * @Route("/serie/new", name="serie_create")
+     * @Route("/serie/{id}/edit", name="serie_edit")
      */
-    public function form(Article $article = null, Request $request, ObjectManager $manager) 
+    public function form(Serie $serie = null, Request $request, ObjectManager $manager) 
     {
-        if(!$article) {
-        $article = new Article();
+        if(!$serie) {
+        $serie = new Serie();
         }
 
-        $form = $this->createForm(ArticleType::class, $article);
+        $form = $this->createForm(SerieType::class, $serie);
         $this->getUser();  
-        $article->setUser($this->getUser());  
+        $serie->addUser($this->getUser());  
         
-        $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
+        $series = $this->getDoctrine()->getRepository(Serie::class)->findAll();
 
         $form->handleRequest($request);    
         
         if($form->isSubmitted() && $form->isValid()) 
         {
-            if(!$article->getId())
+            if(!$serie->getId())
             {
-            $article->setCreate_at(new \DateTime());
+            $serie->setCreate_at(new \DateTime());
             }
 
-            $manager->persist($article);
+            $manager->persist($serie);
             $manager->flush();
 
             $this->addFlash('message', 'Votre manga à bien été ajouté');
 
-            return $this->redirectToRoute('blog', ['id' => $article->getId()]);
+            return $this->redirectToRoute('series', ['id' => $serie->getId()]);
         }
 
-        return $this->render('blog/create.html.twig', [ 'formArticle' => $form->createView(), 'editMode' => $article->getId() !== null, 'articles' => $articles
+        return $this->render('mangatheque/create.html.twig', [ 'formSerie' => $form->createView(), 'editMode' => $serie->getId() !== null, 'series' => $series
         ]);
     }
 
@@ -111,11 +120,11 @@ class BlogController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) 
         {
             $this->getUser();  
-            $manga->setUser($this->getUser());
+            $manga->addUser($this->getUser());
 
             $id = $request->query->get('id');
-            $article = $this->getDoctrine()->getRepository(Article::class)->find($id);
-            $manga->setArticle($article);
+            $serie = $this->getDoctrine()->getRepository(Serie::class)->find($id);
+            $manga->setSerie($serie);
 
             if(!$manga->getId())
             {
@@ -127,40 +136,70 @@ class BlogController extends AbstractController
 
             $this->addFlash('message', 'Votre manga à bien été ajouté');
 
-            return $this->redirectToRoute('blog_show', ['id' => $id]);
+            return $this->redirectToRoute('serie_show', ['id' => $id]);
         }
 
-        return $this->render('blog/createManga.html.twig', [ 'formManga' => $form->createView()
+        return $this->render('mangatheque/createManga.html.twig', [ 'formManga' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/collection/{id}", name="collection_show")
+     * @Route("/serie/{id}/update", name="serie_update")
      */
-    public function show($id, Article $article, EntityManagerInterface $entityManager, Request $request, TokenStorageInterface $tokenStorage)
+    public function formUpdate($id, Request $request, ObjectManager $manager) 
+    {
+        $serie = $this->getDoctrine()->getRepository(Serie::class)->find($id);
+
+        if(!$serie) {
+            $this->addFlash('message', 'Un problème est survenu');
+            return $this->redirectToRoute('serie_create');
+        } 
+
+        $form = $this->createForm(SerieType::class, $serie);
+        $serie->addUser($this->getUser());  
+
+        $form->handleRequest($request);  
+        
+        if(!$serie->getId()) {
+            $serie->setCreate_at(new \DateTime());
+        }
+
+        $manager->persist($serie);
+        $manager->flush();
+
+        $this->addFlash('message', 'Votre manga à bien été ajouté');
+
+        return $this->redirectToRoute('series', ['id' => $serie->getId()]);        
+    }
+
+  
+    /**
+     * @Route("/serie/{id}", name="serie_show")
+     */
+    public function show($id, Serie $serie, EntityManagerInterface $entityManager, Request $request, TokenStorageInterface $tokenStorage)
     {
         $userId = $tokenStorage->getToken()->getUser();
-        $mangas = $entityManager->getRepository(Manga::class)->findBy(['user' => $userId, 'article' => $id]);  
+        $mangas = $entityManager->getRepository(Manga::class)->findBy(['user' => $userId, 'serie' => $id]);  
 
-        return $this->render('blog/show.html.twig', ['article' => $article, 'mangas' => $mangas
+        return $this->render('mangatheque/show.html.twig', ['serie' => $serie, 'mangas' => $mangas
         ]);
     }
 
     /**
-     * @Route("/delete/{id}", name="article_delete")
+     * @Route("/delete/{id}", name="serie_delete")
      * @return Response
      */
     public function delete($id)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $article = $entityManager->getRepository( Article::class)->find($id);
+        $serie = $entityManager->getRepository( Serie::class)->find($id);
         
-        $entityManager->remove($article);
+        $entityManager->remove($serie);
         $entityManager->flush();
 
-        $this->addFlash('message', 'Votre collection à bien été supprimé');
+        $this->addFlash('message', 'Votre serie à bien été supprimé');
 
-        return $this->redirectToRoute('blog');
+        return $this->redirectToRoute('series');
     }
 
     /**
@@ -177,39 +216,39 @@ class BlogController extends AbstractController
 
         $this->addFlash('message', 'Votre manga à bien été supprimé');
 
-        return $this->redirectToRoute('blog');
+        return $this->redirectToRoute('series');
     }
 
     /**
-     * @Route("/seinen", name="article_seinen")
+     * @Route("/seinen", name="serie_seinen")
      */
     public function seinen()
     {
-        return $this->render('blog/seinen.html.twig');
+        return $this->render('mangatheque/seinen.html.twig');
     }
 
     /**
-     * @Route("/shonen", name="article_shonen")
+     * @Route("/shonen", name="serie_shonen")
      */
     public function shonen()
     {
-        return $this->render('blog/shonen.html.twig');
+        return $this->render('mangatheque/shonen.html.twig');
     }
 
     /**
-     * @Route("/manhwa", name="article_manhwa")
+     * @Route("/manhwa", name="serie_manhwa")
      */
     public function manhwa()
     {
-        return $this->render('blog/manhwa.html.twig');
+        return $this->render('mangatheque/manhwa.html.twig');
     }
 
     /**
-     * @Route("/allCollections", name="all_collections")
+     * @Route("/allSeries", name="all_series")
      */
-    public function allCollections()
+    public function allSeries()
     {
-        return $this->render('blog/allCollections.html.twig');
+        return $this->render('mangatheque/allSeries.html.twig');
     }
 
     
