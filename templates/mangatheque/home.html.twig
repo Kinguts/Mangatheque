@@ -1,41 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div id="slider">
-  <div id="imagesslider">
-    <figure><img class="photosslider" src="images/test_slider.jpg" alt="1"></figure>
-    <figure><img class="photosslider" src="images/shonen_slider.jpg" alt="2"></figure>
-    <figure><img class="photosslider" src="images/seinen_slider.jpg" alt="3"></figure>
-    <figure><img class="photosslider" src="images/seinen2_slider.jpg" alt="4"></figure>
-  </div>
-  <div id="boutonsslider">
-    <span class="boutons" id="boutongauche"><i class="fas fa-chevron-left"></i></span>
-    <span class="boutons" id="boutondroite"><i class="fas fa-chevron-right"></i></span>
-  </div>
-  <div id="statutslider">
-    <span class="cercles" id="cercle1"></span>
-    <span class="cercles"></span>
-    <i id="pause" class="fas fa-pause controles"></i>
-    <i id="play" class="fas fa-play controles invisible"></i>
-    <span class="cercles"></span>
-    <span class="cercles"></span>
-  </div>
-</div>
 
-<h1 class="title_home">Créer votre propre Mangathèque !</h1>
+  <div id="slider">
+    <div id="imagesslider">
+      <figure><img class="photosslider" src="images/test_slider.jpg" alt="1"></figure>
+      <figure><img class="photosslider" src="images/shonen_slider.jpg" alt="2"></figure>
+      <figure><img class="photosslider" src="images/seinen_slider.jpg" alt="3"></figure>
+      <figure><img class="photosslider" src="images/seinen2_slider.jpg" alt="4"></figure>
+    </div>
+    <div id="boutonsslider">
+      <span class="boutons" id="boutongauche"><i class="fas fa-chevron-left"></i></span>
+      <span class="boutons" id="boutondroite"><i class="fas fa-chevron-right"></i></span>
+    </div>
+    <div id="statutslider">
+      <span class="cercles" id="cercle1"></span>
+      <span class="cercles"></span>
+      <i id="pause" class="fas fa-pause controles"></i>
+      <i id="play" class="fas fa-play controles invisible"></i>
+      <span class="cercles"></span>
+      <span class="cercles"></span>
+    </div>
+  </div>
 
-<div id="text_home">
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, blanditiis. Quasi, ipsam esse delectus odit modi repellendus corporis debitis nam iusto dolorum dicta in, sit vero necessitatibus aspernatur similique </br>
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut explicabo dolores id modi aliquid quibusdam reiciendis tenetur ratione veniam excepturi, hic architecto omnis, voluptatem fugiat corporis in obcaecati quas ad.
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio accusamus, itaque placeat asperiores sunt beatae deserunt doloribus est veritatis pariatur sint eligendi nostrum nihil libero rerum dolorum porro earum laudantium?<br></p>
-</div>
+  <h1 class="title_home">Créer votre propre Mangathèque !</h1>
+
+  <div id="text_home">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, blanditiis. Quasi, ipsam esse delectus odit modi repellendus corporis debitis nam iusto dolorum dicta in, sit vero necessitatibus aspernatur similique </br>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut explicabo dolores id modi aliquid quibusdam reiciendis tenetur ratione veniam excepturi, hic architecto omnis, voluptatem fugiat corporis in obcaecati quas ad.
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio accusamus, itaque placeat asperiores sunt beatae deserunt doloribus est veritatis pariatur sint eligendi nostrum nihil libero rerum dolorum porro earum laudantium?<br></p>
+  </div>
 
     
-<div class="row" id="containerMenu">
-
-  <div class="col-md-4 mr-auto" id="blocghost">
-    <div class = "card text-white bg-primary mb-3 menu" id="blocmenu1" style = "max-width: 20rem;">
-        <div class = "card-header"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;">Visite du site</font>     </font> 
+  <div class="row" id="containerMenu">
+    <div class="col-md-4 mr-auto" id="blocghost">
+      <div class = "card text-white bg-primary mb-3 menu" id="blocmenu1" style = "max-width: 20rem;">
+        <div class = "card-header">
+          <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;">Visite du site</font></font>
         </div>
         <div class = "card-body">
           <h4 class = "card-title"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;">Catégorie de manga</font></font> </h4>
@@ -46,39 +47,41 @@
           <a class="btn btn-primary" href="{{ path('all_series') }}">Les collections</a></br>
           <p class = "card-text"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;"></font> </font> </p>
         </div>
+      </div>
     </div>
-  </div>
   
-  <div class="col-md-4">
-    <div class="card text-white bg-primary mb-3 menu" id="blocmenu2" style="max-width: 20rem;">
-    <div class="card-header">Espace membre</div>
-    <div class="card-body">
-      {% if app.user %}
-      <h4 class="card-title">Bonjour {{ app.user.username }}</h4>
-      {% else %}
-      <h4 class="card-title">Membre</h4>
-      {% endif %}
-       {% if app.user %}
-        <a class="btn btn-primary" href="{{ path('series') }}">Mes collection</a></br>
-        <a class="btn btn-primary" href="{{ path('serie_create') }}">Ajouter une collection</a></br>
-        {% else %}
-        <a class="btn btn-primary" href="{{ path('security_login') }}">Connexion</a></br>
-        {% endif %}
-        {% if is_granted('ROLE_ADMIN') %}
-        <a class="btn btn-primary" href="/lego">Administration</a></br>
-        {% else %}
-          {% if not app.user %}
-            <a class="btn btn-primary" href="{{ path('security_registration') }}">Inscription</a>
-            {% else %}
-            <a class="btn btn-primary" href="{{ path('security_logout') }}">Deconnexion</a>
-          {% endif %}  
-        {% endif %}
+    <div class="col-md-4">
+      <div class="card text-white bg-primary mb-3 menu" id="blocmenu2" style="max-width: 20rem;">
+        <div class="card-header">Espace membre</div>
+        <div class="card-body">
 
-      <p class="card-text"></p>
+          {% if app.user %}
+            <h4 class="card-title">Bonjour {{ app.user.username }}</h4>
+            {% else %}
+              <h4 class="card-title">Membre</h4>
+          {% endif %}
+
+          {% if app.user %}
+            <a class="btn btn-primary" href="{{ path('series') }}">Mes collection</a></br>
+            <a class="btn btn-primary" href="{{ path('serie_create') }}">Ajouter une collection</a></br>
+            {% else %}
+              <a class="btn btn-primary" href="{{ path('security_login') }}">Connexion</a></br>
+          {% endif %}
+
+          {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-primary" href="/lego">Administration</a></br>
+            {% else %}
+            {% if not app.user %}
+              <a class="btn btn-primary" href="{{ path('security_registration') }}">Inscription</a>
+                {% else %}
+                  <a class="btn btn-primary" href="{{ path('security_logout') }}">Deconnexion</a>
+            {% endif %}  
+          {% endif %}
+
+          <p class="card-text"></p>
+        </div>
       </div>
     </div>
   </div>
-
-</div>
 
 {% endblock %}

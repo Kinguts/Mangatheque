@@ -49,7 +49,6 @@ class ApiController extends AbstractController
         //On ajoute l'entête HTTP
         $response->headers->set('Content-Type', 'application/json');
 
-
         //On envoie la réponse
         return $response;
     }
@@ -81,7 +80,6 @@ class ApiController extends AbstractController
 
         //On ajoute l'entête HTTP
         $response->headers->set('Content-Type', 'application/json');
-
 
         //On envoie la réponse
         return $response;
@@ -118,6 +116,5 @@ class ApiController extends AbstractController
             return new Response('Ok', 201);
         }
         return new Response('Erreur', 404);
-    }
-    
+    }    
 }

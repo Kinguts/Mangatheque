@@ -18,7 +18,7 @@ function getSeries() {
 
 function createSerie(data) {
     var content = '<li>';
-    content += '<div class="col-4 bloc_book" id="blocBook" style="margin: 5px;" >';
+    content += '<div class="col-4 bloc_book" id="blocBook" style="margin: 5px; height: 88%;" >';
     content += '<div class="row mb-2 bloc_interieur">';          
     content += '<div class="row no-gutters rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative article">';
     content += '<div class="col p-4 d-flex flex-column position-static">';

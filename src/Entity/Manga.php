@@ -106,8 +106,6 @@ class Manga
         if  ($image) {
             $this->updateAt = new \DateTime('now');
         }
-
-
         return $this;
     }
 

@@ -32,9 +32,7 @@ class BlogController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager, Request $request, TokenStorageInterface $tokenStorage, PaginatorInterface $paginator)
     {
-
         $currentUserId = $tokenStorage->getToken()->getUser();
-
         $user = $entityManager->getRepository(User::class)->find($currentUserId);
 
         if (isset($user)) {
@@ -44,7 +42,6 @@ class BlogController extends AbstractController
         } else {
             $allSeries = array();           
         } 
-
         $serie = $paginator->paginate(
             // Doctrine Query, not results
             $allSeries,
@@ -53,7 +50,6 @@ class BlogController extends AbstractController
             // Items per page
             6
         );
-
         return $this->render('mangatheque/series.html.twig', [
             'serie' => $serie
         ]);
@@ -99,7 +95,6 @@ class BlogController extends AbstractController
 
             return $this->redirectToRoute('series', ['id' => $serie->getId()]);
         }
-
         return $this->render('mangatheque/create.html.twig', [ 'formSerie' => $form->createView(), 'editMode' => $serie->getId() !== null, 'series' => $series
         ]);
     }
@@ -120,7 +115,7 @@ class BlogController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) 
         {
             $this->getUser();  
-            $manga->addUser($this->getUser());
+            $manga->setUser($this->getUser());
 
             $id = $request->query->get('id');
             $serie = $this->getDoctrine()->getRepository(Serie::class)->find($id);
@@ -130,7 +125,6 @@ class BlogController extends AbstractController
             {
             $manga->setCreatedAt(new \DateTime());
             }
-
             $manager->persist($manga);
             $manager->flush();
 
@@ -138,7 +132,6 @@ class BlogController extends AbstractController
 
             return $this->redirectToRoute('serie_show', ['id' => $id]);
         }
-
         return $this->render('mangatheque/createManga.html.twig', [ 'formManga' => $form->createView()
         ]);
     }
@@ -154,7 +147,6 @@ class BlogController extends AbstractController
             $this->addFlash('message', 'Un problème est survenu');
             return $this->redirectToRoute('serie_create');
         } 
-
         $form = $this->createForm(SerieType::class, $serie);
         $serie->addUser($this->getUser());  
 
@@ -163,7 +155,6 @@ class BlogController extends AbstractController
         if(!$serie->getId()) {
             $serie->setCreate_at(new \DateTime());
         }
-
         $manager->persist($serie);
         $manager->flush();
 
@@ -171,7 +162,6 @@ class BlogController extends AbstractController
 
         return $this->redirectToRoute('series', ['id' => $serie->getId()]);        
     }
-
   
     /**
      * @Route("/serie/{id}", name="serie_show")
@@ -249,8 +239,5 @@ class BlogController extends AbstractController
     public function allSeries()
     {
         return $this->render('mangatheque/allSeries.html.twig');
-    }
-
-    
-    
+    }       
 }

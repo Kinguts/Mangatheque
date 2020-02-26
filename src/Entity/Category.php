@@ -38,7 +38,6 @@ class Category
         return $this->title;
     }
 
-
     public function getId(): ?int
     {
         return $this->id;
@@ -83,7 +82,6 @@ class Category
                 $serie->setCategory(null);
             }
         }
-
         return $this;
     }
 }

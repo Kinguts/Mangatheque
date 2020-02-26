@@ -204,7 +204,6 @@ class Serie
             $this->comments[] = $comment;
             $comment->setSerie($this);
         }
-
         return $this;
     }
 
@@ -217,7 +216,6 @@ class Serie
                 $comment->setSerie(null);
             }
         }
-
         return $this;
     }
 
@@ -235,7 +233,6 @@ class Serie
             $this->mangas[] = $manga;
             $manga->setSerie($this);
         }
-
         return $this;
     }
 
@@ -248,7 +245,6 @@ class Serie
                 $manga->setSerie(null);
             }
         }
-
         return $this;
     }
 
@@ -265,7 +261,6 @@ class Serie
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
         }
-
         return $this;
     }
 
@@ -274,7 +269,6 @@ class Serie
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
         }
-
         return $this;
     }
 }

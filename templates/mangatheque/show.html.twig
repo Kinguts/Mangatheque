@@ -1,62 +1,55 @@
 {% extends "base.html.twig" %}
 
 {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/book.css') }}">
-        <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{ asset('css/book.css') }}">
+  <link rel="stylesheet" href="css/style.css">
 {% endblock %}
 
 {% block body %}
-<div class="collection_showAll">
-<div >
-        <img class="image_collection" src="{{ vich_uploader_asset(serie, 'imageFile') }}" alt="">
+
+  <div class="collection_showAll">
+    <div >
+      <img class="image_collection" src="{{ vich_uploader_asset(serie, 'imageFile') }}" alt="">
     </div>
-
-<div class="blockArticle">
-    
-    <article>
+    <div class="blockArticle">   
+      <article>
         <div class="svg-wrapper">
-  <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
-    <rect class="shape" height="60" width="320" />
-    <div class="text"><h2>{{ serie.title }}</h2></div>
-  </svg>
-</div>
-        
+          <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+            <rect class="shape" height="60" width="320" />
+            <div class="text"><h2>{{ serie.title }}</h2></div>
+          </svg>
+        </div>        
         <div class="metadata" id="article_datetime">Ecrit le {{ serie.create_at | date('d/m/Y') }} à {{ serie.create_at | date('H:i') }} dans la catégorie {{ serie.category.title }}   
-            <div class="content" id="content_manga">           
-                {{ serie.content | raw }}
-            </div>    
+          <div class="content" id="content_manga">           
+            {{ serie.content | raw }}
+          </div>    
         </div>
-    </article>
-</div>
-</div>
-{% for message in app.flashes('message') %}
-
-  <div class="alert alert-warning" role="alert">
-  {{ message }}
+      </article>
+    </div>
   </div>
 
-{% endfor %}
-
-<div class="niveau">
-    <div class="bloc_etagere">
-    {% for manga in mangas %}
-    
-        <div class="book_collect"><img src="{{ vich_uploader_asset(manga, 'imageFile') }}" alt="" id="image_new">
-        <button type="button" class="btn btn-primary" id="button_mangaShow"><a href="{{ path('manga_delete', {'id':manga.id}) }}" class="button">Supprimer</a></button>
-        </div>
-      
-    {% endfor %}
+  {% for message in app.flashes('message') %}
+    <div class="alert alert-warning" role="alert">
+      {{ message }}
     </div>
-</div>
+  {% endfor %}
 
-
-
-<div id="button_collectAdd">
-{% if app.user %}
-<button type="submit" class="btn btn-success"><a class="nav-link" href="{{ path('create_manga', {'id':serie.id}) }}">Ajouter un manga</a></button>
-{% else %}
-{% endif %}
-</div>
+  <div class="niveau">
+    <div class="bloc_etagere">
+      {% for manga in mangas %}    
+        <div class="book_collect"><img src="{{ vich_uploader_asset(manga, 'imageFile') }}" alt="" id="image_new">
+          <button type="button" class="btn btn-primary" id="button_mangaShow"><a href="{{ path('manga_delete', {'id':manga.id}) }}" class="button">Supprimer</a></button>
+        </div>     
+      {% endfor %}
+      </div>
+    </div>
+    <div id="button_collectAdd">
+      {% if app.user %}
+        <button type="submit" class="btn btn-success"><a class="nav-link" href="{{ path('create_manga', {'id':serie.id}) }}">Ajouter un manga</a></button>
+        {% else %}
+      {% endif %}
+    </div>
+  </div>
 
 {% endblock %}     
 

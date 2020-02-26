@@ -1,85 +1,80 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/book.css') }}">
- {% endblock %}
+  <link rel="stylesheet" href="{{ asset('css/book.css') }}">
+{% endblock %}
 
 {% block title %}Ma Mangathèque{% endblock %}
 
 {% block body %}
 
-{% for message in app.flashes('message') %}
-
-  <div class="alert alert-warning" role="alert">
-  {{ message }}
-  </div>
-
-{% endfor %}
-
-<h1 id="title_collect">Ma Mangathèque</h1>
-
-<div class="row justify-content-between">
-
-  {% for serie in serie %}
-
-    <div class="col-4 bloc_book" id="blocBook">
-      <div class="row mb-2 bloc_interieur">          
-    	<div class="row no-gutters rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative article">
-    	  <div class="col p-4 d-flex flex-column position-static">
-            <h2 class="title_manga">{{ serie.title }}</h2>
-			<ul class="align">
-			  <small class="mb-0 text-muted">Ajouté le {{ serie.create_at | date('d/m/Y') }} à {{ serie.create_at | date('H:i') }}</small> dans la catégorie {{ serie.category.title }}
-              <li><figure class="book">
-
-              <!-- Front -->     
-              <ul class="hardcover_front">
-              <li>
-                <img src="{{ vich_uploader_asset(serie, 'imageFile') }}" alt="" id="image_new">
-              </li>
-              <li></li>
-            </ul>   
-
-            <!-- Pages -->     
-            <ul class="page_book">
-              <li></li>
-              <li>								    
-                <a href="{{ path('create_manga', {'id': serie.id}) }}" class="btn btn-primary addMangaCollect">Ajouter un manga</a>
-                <a href="{{ path('serie_show', {'id': serie.id}) }}" class="btn btn-primary mangaCollect">Ma collection</a>
-              </li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>  
-
-            <!-- Back -->     
-            <ul class="hardcover_back">
-              <li></li>
-              <li></li>
-            </ul>
-            <ul class="book_spine">
-              <li></li>
-              <li></li>
-            </ul>
-            <figcaption>
-              <h3 class="mb-2 chapitre"></h3>
-             
-              <div></div>
-            </figcaption>
-            </figure></li>
-            </ul>				                
-			<button type="button" class="btn btn-primary" id="button_manga1"><a href="{{ path('serie_delete', {'id':serie.id}) }}" class="button">Supprimer</a></button>
-			<button type="button" class="btn btn-primary" id="button_manga2"><a href="{{ path('serie_edit', {'id':serie.id}) }}" class="button">Editer</a></button>			
-    	  </div>   	  
-        </div>	
-      </div>
-    </div>   
+  {% for message in app.flashes('message') %}
+    <div class="alert alert-warning" role="alert">
+      {{ message }}
+    </div>
   {% endfor %}
-</div>
-    
-<div class="button_new"><button type="submit" class="btn btn-success" id="new"><a class="nav-link" href="{{ path('serie_create') }}">Ajouter une collection</a></button></div>
 
-<div class="navigation">
-  {{ knp_pagination_render(serie) }}
-</div>
+  <h1 id="title_collect">Ma Mangathèque</h1>
+
+  <div class="row justify-content-between" id="contBlocBook" style="padding-left: 20px;">
+    {% for serie in serie %}
+      <div class="col-4 bloc_book" id="blocBook">
+        <div class="row mb-2 bloc_interieur">          
+    	    <div class="row no-gutters rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative article">
+    	      <div class="col p-4 d-flex flex-column position-static">
+              <h2 class="title_manga">{{ serie.title }}</h2>
+			        <ul class="align">
+			          <small class="mb-0 text-muted">Ajouté le {{ serie.create_at | date('d/m/Y') }} à {{ serie.create_at | date('H:i') }}</small> dans la catégorie {{ serie.category.title }}
+                <li><figure class="book">
+
+                  <!-- Front -->     
+                  <ul class="hardcover_front">
+                    <li>
+                      <img src="{{ vich_uploader_asset(serie, 'imageFile') }}" alt="" id="image_new">
+                    </li>
+                    <li></li>
+                  </ul>   
+
+                  <!-- Pages -->     
+                  <ul class="page_book">
+                    <li></li>
+                    <li>								    
+                      <a href="{{ path('create_manga', {'id': serie.id}) }}" class="btn btn-primary addMangaCollect">Ajouter un manga</a>
+                      <a href="{{ path('serie_show', {'id': serie.id}) }}" class="btn btn-primary mangaCollect">Ma collection</a>
+                    </li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ul>  
+
+                  <!-- Back -->     
+                  <ul class="hardcover_back">
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  <ul class="book_spine">
+                    <li></li>
+                    <li></li>
+                  </ul>
+                  <figcaption>
+                    <h3 class="mb-2 chapitre"></h3>             
+                    <div></div>
+                  </figcaption>
+                </figure></li>
+              </ul>				                
+			        <button type="button" class="btn btn-primary" id="button_manga1"><a href="{{ path('serie_delete', {'id':serie.id}) }}" class="button">Supprimer</a></button>
+			        <button type="button" class="btn btn-primary" id="button_manga2"><a href="{{ path('serie_edit', {'id':serie.id}) }}" class="button">Editer</a></button>			
+    	      </div>   	  
+          </div>	
+        </div>
+      </div>   
+    {% endfor %}
+  </div>   
+
+  <div class="button_new"><button type="submit" class="btn btn-success" id="new"><a class="nav-link" href="{{ path('serie_create') }}">Ajouter une collection</a></button></div>
+
+  <div class="navigation">
+    {{ knp_pagination_render(serie) }}
+  </div>
 
 {% endblock %}

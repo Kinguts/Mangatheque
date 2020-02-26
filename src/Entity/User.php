@@ -158,7 +158,6 @@ class User implements UserInterface
             $this->manga[] = $manga;
             $manga->setUser($this);
         }
-
         return $this;
     }
 
@@ -171,7 +170,6 @@ class User implements UserInterface
                 $manga->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -189,7 +187,6 @@ class User implements UserInterface
             $this->series[] = $series;
             $series->addUser($this);
         }
-
         return $this;
     }
 
@@ -199,9 +196,6 @@ class User implements UserInterface
             $this->series->removeElement($series);
             $series->removeUser($this);
         }
-
         return $this;
-    }
-
-    
+    }    
 }

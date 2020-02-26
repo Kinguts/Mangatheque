@@ -4,19 +4,21 @@
 
 {% block body %}
 
+	<h1 id="titleManga">Ajout d'un manga !</h1>
 
+	<div id="formManga">
+		{{ form_start(formManga) }}
 
-<h1>Ajout d'un manga !<h1>
+		{{ form_row(formManga.title, {'attr': {'placeholder': "Titre du manga"}}) }}
+		<div id="imageButtonManga">
+			{{ form_widget(formManga.imageFile, {'attr': {'placeholder': "Image du manga"}}) }}
 
-    {{ form_start(formManga) }}
+			<button type="submit" class="btn btn-success">
+				Ajouter le manga
+			</button>
+		</div>
+		{{ form_end(formManga) }}
+	</div>
 
-    {{ form_row(formManga.title, {'attr': {'placeholder': "Titre du manga"}}) }}
-    {{ form_widget(formManga.imageFile) }}
-  
-    <button type="submit" class="btn btn-success"> 
-            Ajouter le manga           
-    </button>
+{% endblock %}
 
-    {{ form_end(formManga) }}
-
-{% endblock %} 

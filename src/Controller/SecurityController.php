@@ -13,7 +13,6 @@ use App\Form\RegistrationType;
 
 class SecurityController extends AbstractController
 {
-
     /**
      * @Route("/inscription", name="security_registration")
      */
@@ -28,7 +27,6 @@ class SecurityController extends AbstractController
       if($form->isSubmitted() && $form->isValid())
       {
           $hash = $encoder->encodePassword($user, $user->getPassword());
-
           $user->setPassword($hash);
 
           $manager->persist($user);
@@ -36,7 +34,6 @@ class SecurityController extends AbstractController
 
           return $this->redirectToRoute('security_login');
       }
-
       return $this->render('security/registration.html.twig', ['form' => $form->createView() ]);
     }
 
