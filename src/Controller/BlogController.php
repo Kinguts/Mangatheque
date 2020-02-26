@@ -28,6 +28,7 @@ use Knp\Component\Pager\PaginatorInterface;
 class BlogController extends AbstractController
 {
     /**
+     * Méthode d'affichage des séries liés à/aux user(s)
      * @Route("/series", name="series")
      */
     public function index(EntityManagerInterface $entityManager, Request $request, TokenStorageInterface $tokenStorage, PaginatorInterface $paginator)
@@ -56,6 +57,7 @@ class BlogController extends AbstractController
     }
 
     /**
+     * Affichage de la page d'acceuil
      * @Route("/", name="home")
      */
     public function home()
@@ -64,6 +66,7 @@ class BlogController extends AbstractController
     }
 
     /**
+     * Méthode pour créer/modifier une série et la liée à l'user
      * @Route("/serie/new", name="serie_create")
      * @Route("/serie/{id}/edit", name="serie_edit")
      */
@@ -100,6 +103,7 @@ class BlogController extends AbstractController
     }
 
     /**
+     * Méthode pour créer un manga et l lié à l'user et à la série
      * @Route("/createManga", name="create_manga")
      */
     public function formManga(Manga $manga = null, Request $request, EntityManagerInterface $manager) 
@@ -134,9 +138,10 @@ class BlogController extends AbstractController
         }
         return $this->render('mangatheque/createManga.html.twig', [ 'formManga' => $form->createView()
         ]);
-    }
+    }  
 
     /**
+     * Méthode pour récupérer une série déja créer avec son id et la lié à un user
      * @Route("/serie/{id}/update", name="serie_update")
      */
     public function formUpdate($id, Request $request, ObjectManager $manager) 
@@ -162,20 +167,22 @@ class BlogController extends AbstractController
 
         return $this->redirectToRoute('series', ['id' => $serie->getId()]);        
     }
-  
+
     /**
+     * Méthode d'affichage des mangas liés à/aux user(s) et à/aux série(s)
      * @Route("/serie/{id}", name="serie_show")
      */
     public function show($id, Serie $serie, EntityManagerInterface $entityManager, Request $request, TokenStorageInterface $tokenStorage)
     {
         $userId = $tokenStorage->getToken()->getUser();
-        $mangas = $entityManager->getRepository(Manga::class)->findBy(['user' => $userId, 'serie' => $id]);  
+        $mangas = $entityManager->getRepository(Manga::class)->findBy(['user' => $userId, 'serie' => $id], ['title' => 'ASC']);  
 
         return $this->render('mangatheque/show.html.twig', ['serie' => $serie, 'mangas' => $mangas
         ]);
     }
 
     /**
+     * Méthode pour supprimer une série 
      * @Route("/delete/{id}", name="serie_delete")
      * @return Response
      */
@@ -190,9 +197,10 @@ class BlogController extends AbstractController
         $this->addFlash('message', 'Votre serie à bien été supprimé');
 
         return $this->redirectToRoute('series');
-    }
+    } 
 
     /**
+     * Méthode pour supprimer un manga
      * @Route("/delete/manga/{id}", name="manga_delete")
      * @return Response
      */

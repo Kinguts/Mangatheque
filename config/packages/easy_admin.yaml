@@ -45,7 +45,7 @@ easy_admin:
                     - { property: 'content', type: 'fos_ckeditor', type_options: { config_name: 'main_config' }}
                     # Affichage du champ d'ajout d'image
                     - { property: 'imageFile', type: 'vich_image', label: 'Image' }
-                    - user
+                    - users
                     # Les catégories et mots-clés peuvent s'afficher avec une sélection multiple
                     - { property: 'category', label: 'Catégories', type: 'entity', type_options: { class: 'App\Entity\Category', multiple: false}}
         Category:

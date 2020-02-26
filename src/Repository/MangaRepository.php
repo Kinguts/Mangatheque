@@ -19,21 +19,6 @@ class MangaRepository extends ServiceEntityRepository
         parent::__construct($registry, Manga::class);
     }
 
-    /**
-     * Retourne une liste de mangas pour l'API
-     * 
-     * @return array
-     */
-    public function apiFindAllManga(): array
-    {
-        $qb = $this->createQueryBuilder('m')
-            ->select('m.id', 'm.title', 'm.content', 'm.featured_image', 'm.create_at')
-            ->orderBy('m.title', 'ASC');
-
-        $query = $qb->getQuery();
-        return $query->execute();
-    }
-
     // /**
     //  * @return Manga[] Returns an array of Manga objects
     //  */

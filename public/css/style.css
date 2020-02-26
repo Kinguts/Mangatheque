@@ -377,6 +377,7 @@ body {
 .bloc_etagere {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 	margin-bottom: 0;
 }
 
@@ -412,6 +413,8 @@ body {
 	margin-left: 37%;
 	margin-right: 63%;
 }
+
+
 /*----Show Article ----*/
 
 .blockArticle {
@@ -461,6 +464,7 @@ body {
 
 .collection_showAll {
 	display: flex;
+	justify-content: center;
 	margin-top: 30px;
 }
 
@@ -557,11 +561,6 @@ body {
 	.collection_showAll {
 		flex-wrap: wrap;
 	}
-
-	.collection_showAll img {
-		margin-right: 75%;
-		margin-left: 25%;
-	}
 }
 
 @media screen and (max-width: 768px) {
@@ -626,11 +625,6 @@ body {
 	.bloc_etagere {
 		padding-left: 6%;
 	}
-
-	.collection_showAll img {
-		margin-right: 82%;
-		margin-left: 18%;
-	}
 }
 
 @media screen and (max-width: 487px) {
@@ -652,11 +646,6 @@ body {
 
 	.book_collect {
 		margin-right: 12px;
-	}
-
-	.collection_showAll img {
-		margin-right: 89%;
-		margin-left: 11%;
 	}
 }
 
