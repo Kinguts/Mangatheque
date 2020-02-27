@@ -40,11 +40,11 @@
         </div>
         <div class = "card-body">
           <h4 class = "card-title"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;">Catégorie de manga</font></font> </h4>
-          <a class="btn btn-primary" href="{{ path('serie_seinen') }}">Seinen</a></br>
-          <a class="btn btn-primary" href="{{ path('serie_shonen') }}">Shonen</a></br>
-          <a class="btn btn-primary" href="{{ path('serie_manhwa') }}">Manhwa</a></br>
+          <a class="btn btn-primary" href="{{ path('serie_seinen') }}">Seinen</a><br/>
+          <a class="btn btn-primary" href="{{ path('serie_shonen') }}">Shonen</a><br/>
+          <a class="btn btn-primary" href="{{ path('serie_manhwa') }}">Manhwa</a><br/>
           <hr>
-          <a class="btn btn-primary" href="{{ path('all_series') }}">Les collections</a></br>
+          <a class="btn btn-primary" href="{{ path('all_series') }}">Les collections</a><br/>
           <p class = "card-text"> <font style = "vertical-align: inherit;"> <font style = "vertical-align: inherit;"></font> </font> </p>
         </div>
       </div>
@@ -62,14 +62,14 @@
           {% endif %}
 
           {% if app.user %}
-            <a class="btn btn-primary" href="{{ path('series') }}">Mes collection</a></br>
-            <a class="btn btn-primary" href="{{ path('serie_create') }}">Ajouter une collection</a></br>
+            <a class="btn btn-primary" href="{{ path('series') }}">Mes collection</a><br/>
+            <a class="btn btn-primary" href="{{ path('serie_create') }}">Ajouter une collection</a><br/>
             {% else %}
-              <a class="btn btn-primary" href="{{ path('security_login') }}">Connexion</a></br>
+              <a class="btn btn-primary" href="{{ path('security_login') }}">Connexion</a><br/>
           {% endif %}
 
           {% if is_granted('ROLE_ADMIN') %}
-            <a class="btn btn-primary" href="/lego">Administration</a></br>
+            <a class="btn btn-primary" href="/lego">Administration</a><br/>
             {% else %}
             {% if not app.user %}
               <a class="btn btn-primary" href="{{ path('security_registration') }}">Inscription</a>

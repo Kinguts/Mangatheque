@@ -16,7 +16,9 @@
         <div class="svg-wrapper">
           <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
             <rect class="shape" height="60" width="320" />
-            <div class="text"><h2>{{ serie.title }}</h2></div>
+            <div class="text">
+              <h2>{{ serie.title }}</h2>
+            </div>
           </svg>
         </div>        
         <div class="metadata" id="article_datetime">Ecrit le {{ serie.create_at | date('d/m/Y') }} à {{ serie.create_at | date('H:i') }} dans la catégorie {{ serie.category.title }}   
@@ -41,7 +43,6 @@
           <button type="button" class="btn btn-primary" id="button_mangaShow"><a href="{{ path('manga_delete', {'id':manga.id}) }}" class="button">Supprimer</a></button>
         </div>     
       {% endfor %}
-      </div>
     </div>
     <div id="button_collectAdd">
       {% if app.user %}
