@@ -49,7 +49,7 @@ class BlogController extends AbstractController
             // Define the page parameter
             $request->query->getInt('page', 1),
             // Items per page
-            6
+            8
         );
         return $this->render('mangatheque/series.html.twig', [
             'serie' => $serie

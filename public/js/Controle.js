@@ -3,14 +3,17 @@
 /* ---------------------------------------------------------------------------- */
 
 class Controle {
-	constructor() { 
-		this.newSlider = new Slider;
+	constructor() {
+		if (document.getElementById("slider")) {
+			this.newSlider = new Slider;
+
+			this.initCont();
+		}
 	};
 
-	initCont() { 
+	initCont() {
 		this.newSlider.initControles(); // Initialisez les controles du slider		
-	};	
+	};
 };
 
 var start = new Controle; 
-start.initCont();

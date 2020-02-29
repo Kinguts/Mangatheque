@@ -80,6 +80,7 @@ a {
 	text-align: center;
 	color: #E95420;
 	font-weight: bold;
+	height: 75px;
 }
 
 /* ///////////////////////////////////////////////////
@@ -125,7 +126,7 @@ Table of Contents
 	background-color: white;
 	margin-bottom: 20px;
 	background-color: burlywood;
-	height: 459px;
+	height: 502px;
 	width: 350px;
 	min-width: 350px;
 }
@@ -137,6 +138,7 @@ Table of Contents
 
 .bloc_interieur {
 	margin-bottom: 0;
+	height: 100%;
 }
 
 #button_manga1 {
@@ -166,6 +168,10 @@ Table of Contents
 .addMangaCollect {
 	margin-top: 80px;
 	width: 90%;
+}
+
+.article {
+	height: 100%;
 }
 
 /*

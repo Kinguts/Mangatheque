@@ -2,13 +2,13 @@
 
 function getSeries() {
     $.ajax({
-        url:'/api/serie/liste',
+        url: '/api/serie/liste',
         type: 'GET',
         dataType: 'json',
-        success: function(response) {
-            for(let i = 0; i < response.length; i++) {
+        success: function (response) {
+            for (let i = 0; i < response.length; i++) {
                 var serie = createSerie(response[i]);
-                $('#allCollections').append(serie)                
+                $('#allCollections').append(serie)
             }
         }
     })
@@ -19,27 +19,27 @@ function getSeries() {
 function createSerie(data) {
     var content = '<li>';
     content += '<div class="col-4 bloc_book" id="blocBook" style="margin: 5px; height: 88%;" >';
-    content += '<div class="row mb-2 bloc_interieur">';          
+    content += '<div class="row mb-2 bloc_interieur">';
     content += '<div class="row no-gutters rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative article">';
     content += '<div class="col p-4 d-flex flex-column position-static">';
-    content += '<h2 class="title_manga">'+data.title+'</h2>';
+    content += '<h2 class="title_manga">' + data.title + '</h2>';
     content += '<ul class="align">';
-    content += '<li><figure class="book">';   
+    content += '<li><figure class="book">';
     content += '<ul class="hardcover_front">';
     content += '<li>';
-    content += '<img src="/uploads/images/featured/'+data.featured_image+'" alt="" id="image_new">';
+    content += '<img src="/uploads/images/featured/' + data.featured_image + '" alt="" id="image_new">';
     content += '</li>';
     content += '<li></li>';
-    content += '</ul>';       
+    content += '</ul>';
     content += '<ul class="page_book">';
     content += '<li></li>';
-    content += '<li>';								    
-    content += '<a href="/serie/'+data.id+'" class="btn btn-primary mangaCollect" style="margin-top: 60%;">La collection</a>';
+    content += '<li>';
+    content += '<a href="/serie/' + data.id + '" class="btn btn-primary mangaCollect" style="margin-top: 60%;">La collection</a>';
     content += '</li>';
     content += '<li></li>';
     content += '<li></li>';
     content += '<li></li>';
-    content += '</ul>';      
+    content += '</ul>';
     content += '<ul class="hardcover_back">';
     content += '<li></li>';
     content += '<li></li>';
@@ -49,13 +49,13 @@ function createSerie(data) {
     content += '<li></li>';
     content += '</ul>';
     content += '<figcaption>';
-    content += '<h3 class="mb-2 chapitre"></h3>';       
+    content += '<h3 class="mb-2 chapitre"></h3>';
     content += '<div></div>';
     content += '</figcaption>';
     content += '</figure></li>';
-    content += '</ul>';				                		
-    content += '</div>';   	  
-    content += '</div>';	
+    content += '</ul>';
+    content += '</div>';
+    content += '</div>';
     content += '</div>';
     content += '</div>';
     content += '</li>';
@@ -63,20 +63,20 @@ function createSerie(data) {
     return content;
 }
 
-$( document ).ready(function() {
-    $("#selectCollection").on("change", function(){
-        var value = this.value;       
+$(document).ready(function () {
+    $("#selectCollection").on("change", function () {
+        var value = this.value;
         if (value !== "") {
             $('#selectionSubmit').attr('href', '/serie/' + value + '/update').removeClass("btn-error")
         } else {
             $("#selectionSubmit").addClass("btn-error");
         }
     })
-    $("#selectionSubmit").on("click", function(e){
+    $("#selectionSubmit").on("click", function (e) {
         if ($(this).hasClass("btn-error")) {
             e.preventDefault()
             return false
-        } 
+        }
     })
     getSeries();
 });

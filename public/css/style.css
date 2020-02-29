@@ -137,6 +137,7 @@ body {
 #new {
 	margin-top: 5px;
 	margin-bottom: 70px;
+	line-height: 42px;
 }
 
 #boutondroite, #boutongauche {
@@ -225,6 +226,10 @@ body {
 	padding: 3px;
 }
 
+.fontSite {
+	vertical-align: inherit;
+}
+
 .card-header {
 	font-size: 1.4em;
 }
@@ -285,7 +290,7 @@ body {
 	border-radius: 50px;
 	background-color: burlywood;
 	padding: 25px;
-	margin-bottom: 20px;
+	margin-bottom: 60px;
 }
 
 #blocmenu1, #blocmenu2 {
@@ -535,6 +540,10 @@ body {
 	display: block;
 	width: 150px;
 	margin-top: 20px;
+}
+
+#navFooter {
+	text-align: center;
 }
 
 /*----Responsive ----*/

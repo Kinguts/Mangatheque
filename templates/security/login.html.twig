@@ -2,19 +2,19 @@
 
 {% block body %}
 
-  <h1 id="title_connect">Connexion !</h1>
-    <div id="form_connect">
-      <form action="{{ path('security_login') }}" method="post">
-        <div class="form-group">
-          <input placeholder="Username..." required name="_username" type="text" class="form-control">
-        </div>
-        <div class="form-group">
-          <input placeholder="Mot de passe..." required name="_password" type="password" class="form-control">
-        </div>
-        <div class="form-group" id="bloc_connect">
-          <button type="submit" class="btn btn-success" id="button_connect">Connexion !</button>
-        </div>
-      </form>
-    </div>   
-         
+	<h1 id="title_connect">Connexion !</h1>
+	<div id="form_connect">
+		<form action="{{ path('security_login') }}" method="post">
+			<div class="form-group">
+				<input placeholder="Username..." required name="_username" type="text" class="form-control">
+			</div>
+			<div class="form-group">
+				<input placeholder="Mot de passe..." required name="_password" type="password" class="form-control">
+			</div>
+			<div class="form-group" id="bloc_connect">
+				<button type="submit" class="btn btn-success" id="button_connect">Connexion !</button>
+			</div>
+		</form>
+	</div>
+
 {% endblock %}
