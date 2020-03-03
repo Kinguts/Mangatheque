@@ -51,7 +51,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     *@Assert\EqualTo(propertyPath="password", message="Votre n'avez pas tapé le même mot de passe")
+     *@Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tapé le même mot de passe")
      */
     public $confirm_password;
 

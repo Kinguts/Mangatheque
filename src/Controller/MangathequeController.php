@@ -16,16 +16,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use App\Entity\User;
 use App\Entity\Serie;
-use App\Repository\SerieRepository;
-use App\Repository\MangaRepository;
+use App\Entity\Manga;
+use App\Entity\Comment;
 use App\Form\SerieType;
 use App\Form\MangaType;
-use App\Entity\Comment;
 use App\Form\CommentType;
-use App\Entity\Manga;
+use App\Repository\SerieRepository;
+use App\Repository\MangaRepository;
+
 use Knp\Component\Pager\PaginatorInterface;
 
-class BlogController extends AbstractController
+class MangathequeController extends AbstractController
 {
     /**
      * Méthode d'affichage des séries liés à/aux user(s)
