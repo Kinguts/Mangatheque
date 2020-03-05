@@ -67,13 +67,13 @@ $(document).ready(function () {
     $("#selectCollection").on("change", function () {
         var value = this.value;
         if (value !== "") {
-            $('#selectionSubmit').attr('href', '/serie/' + value + '/update').removeClass("btn-error")
+            $('#selectionSubmit').attr('href', '/serie/' + value + '/update').removeClass("btn-danger").addClass("btn-success");
         } else {
-            $("#selectionSubmit").addClass("btn-error");
+            $("#selectionSubmit").removeClass("btn-success").addClass("btn-danger");
         }
     })
     $("#selectionSubmit").on("click", function (e) {
-        if ($(this).hasClass("btn-error")) {
+        if ($(this).hasClass("btn-danger")) {
             e.preventDefault()
             return false
         }

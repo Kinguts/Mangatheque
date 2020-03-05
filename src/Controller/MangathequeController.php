@@ -104,7 +104,7 @@ class MangathequeController extends AbstractController
     }
 
     /**
-     * Méthode pour créer un manga et l lié à l'user et à la série
+     * Méthode pour créer un manga et lié à l'user et à la série
      * @Route("/createManga", name="create_manga")
      */
     public function formManga(Manga $manga = null, Request $request, EntityManagerInterface $manager) 
