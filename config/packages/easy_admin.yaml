@@ -12,8 +12,8 @@ easy_admin:
             - "@FOSCKEditor/Form/ckeditor_widget.html.twig"
         # Ces lignes définiront notre menu
         menu:
-            - { label: 'Serie' }
-            - { entity: 'Serie', label: 'Serie', icon: 'book' }
+            - { label: 'Site' }
+            - { entity: 'Serie', label: 'Collection', icon: 'book' }
             - { entity: 'Category', label: 'Catégories', icon: 'tag' }
             - { entity: 'Manga', label: 'Manga', icon: 'book-open' }
             - { label: 'Utilisateurs' }
@@ -25,6 +25,7 @@ easy_admin:
         Serie:
             # Correspond au fichier serie.php
             class: App\Entity\Serie
+            label: 'Collection'
             # On définit ci-dessous le contenu de la liste qui affichera les series et les critères de tri
             list:
                 fields:
@@ -50,6 +51,7 @@ easy_admin:
                     - { property: 'category', label: 'Catégories', type: 'entity', type_options: { class: 'App\Entity\Category', multiple: false}}
         Category:
             class: App\Entity\Category
+            label: 'Catégorie'
             list:
                 fields:
                     - title   
@@ -60,7 +62,7 @@ easy_admin:
                     - title   
         User:
             class: App\Entity\User
-            label: 'Utilisateurs'
+            label: 'Utilisateur'
             list:
                 fields:
                     - id
