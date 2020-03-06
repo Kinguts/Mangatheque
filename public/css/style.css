@@ -618,6 +618,10 @@ body {
 	}
 }
 
+.card-header h2 {
+	font-size: 1.1em;
+}
+
 @media screen and (max-width: 606px) {
 	.book {
 		margin-top: 20px !important;

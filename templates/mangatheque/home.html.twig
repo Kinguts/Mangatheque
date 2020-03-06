@@ -37,10 +37,10 @@
     <div class="col-md-4 mr-auto" id="blocghost">
       <div class = "card text-white bg-primary mb-3 menu" id="blocmenu1" style = "max-width: 20rem;">
         <div class = "card-header">
-          <span>Visite du site</span>
+          <h2>Visite du site</h2>
         </div>
         <div class = "card-body">
-          <h4 class = "card-title"> <span>Catégorie de manga</span> </h4>
+          <h3 class = "card-title"> <span>Catégorie de manga</span> </h3>
           <a class="btn btn-primary" href="{{ path('serie_seinen') }}">Seinen</a><br/>
           <a class="btn btn-primary" href="{{ path('serie_shonen') }}">Shonen</a><br/>
           <a class="btn btn-primary" href="{{ path('serie_manhwa') }}">Manhwa</a><br/>
@@ -53,17 +53,17 @@
   
     <div class="col-md-4">
       <div class="card text-white bg-primary mb-3 menu" id="blocmenu2" style="max-width: 20rem;">
-        <div class="card-header">Espace membre</div>
+        <div class="card-header"><h2>Espace membre<h2></div>
         <div class="card-body">
 
           {% if app.user %}
-            <h4 class="card-title">Bonjour {{ app.user.username }}</h4>
+            <h3 class="card-title">Bonjour {{ app.user.username }}</h3>
             {% else %}
-              <h4 class="card-title">Membre</h4>
+              <h3 class="card-title">Membre</h3>
           {% endif %}
 
           {% if app.user %}
-            <a class="btn btn-primary" href="{{ path('series') }}">Mes collection</a><br/>
+            <a class="btn btn-primary" href="{{ path('series') }}">Mes collections</a><br/>
             <a class="btn btn-primary" href="{{ path('serie_create') }}">Ajouter une collection</a><br/>
             {% else %}
               <a class="btn btn-primary" href="{{ path('security_login') }}">Connexion</a><br/>
